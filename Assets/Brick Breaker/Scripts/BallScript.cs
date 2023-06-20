@@ -6,7 +6,7 @@ using TMPro;
 public class BallScript : MonoBehaviour
 {
     public float maxVelocity = 10f; // Maximum velocity of the ball
-    public float respawnDelay = 1f; // Delay before the ball respawns
+    public float respawnDelay = 2f; // Delay before the ball respawns
     public TextMeshPro displayed_score;
     protected int score = 0;
     public Rigidbody2D myRigidbody;
@@ -20,6 +20,7 @@ public class BallScript : MonoBehaviour
     private bool isStopped = true; // Flag to indicate if the ball is stopped
     private float stopTime = 0f; // Time when the ball was stopped
     // Start is called before the first frame update
+    public LivesScript ref_livesScript;
     void Start()
     {
         ref_AudioSourceWall = gameObject.AddComponent<AudioSource>();
@@ -31,6 +32,7 @@ public class BallScript : MonoBehaviour
         ref_AudioSourceLooseLife = gameObject.AddComponent<AudioSource>();
         ref_AudioSourceLooseLife.volume = 0.5f;
         ref_AudioSourceLooseLife.clip = looseLifeSound;
+        ref_livesScript = FindObjectOfType<LivesScript>();
     }
 
 
@@ -58,6 +60,7 @@ public class BallScript : MonoBehaviour
         }
         if (transform.position.y < -7f || BrickSpawner.createBricks == true)
         {
+            ref_livesScript.LoseLife();
             transform.position = new Vector2(0f, -5.5f);
             myRigidbody.velocity = Vector2.zero;
             isStopped = true;
@@ -72,7 +75,6 @@ public class BallScript : MonoBehaviour
     /// <param name="other">The Collision2D data associated with this collision.</param>
     void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log("Collision");
         float diffX = transform.position.x - other.transform.position.x;
         if (other.gameObject.tag == "Paddle")
         {
@@ -86,7 +88,6 @@ public class BallScript : MonoBehaviour
             ref_AudioSourceWall.Play();
             Destroy(other.gameObject);
             BrickSpawner.numBricks--;
-            Debug.Log("Brick destroyed" + BrickSpawner.numBricks);
         }
         else if (other.gameObject.CompareTag("Wall"))
         {

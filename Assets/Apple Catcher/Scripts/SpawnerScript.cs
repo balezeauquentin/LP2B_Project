@@ -35,7 +35,6 @@ public class SpawnerScript : MonoBehaviour
         // La condition s'active toutes les secondes
         lastTime = Time.time;
         // Ajoutez votre code ici
-        Debug.Log(" stat: " + BombScript.bombIsDestroyed);
     }
         if (AppleScript.appleIsDestroyed == true && BombScript.bombIsDestroyed == true)
         {

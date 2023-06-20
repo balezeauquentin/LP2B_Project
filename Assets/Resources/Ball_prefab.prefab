@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7279936317439090814}
   - component: {fileID: 7279936317439090801}
   - component: {fileID: 7279936317439090800}
-  - component: {fileID: 7279936317439090803}
   m_Layer: 0
   m_Name: Ball_prefab
   m_TagString: Ball
@@ -95,7 +94,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7279936317439090802}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -124,19 +123,3 @@ CircleCollider2D:
   m_Offset: {x: 0.0008291006, y: 0}
   serializedVersion: 2
   m_Radius: 0.3208291
---- !u!114 &7279936317439090803
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7279936317439090802}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d51435f184846e4c9b8b2cc760b2751, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  displayed_score: {fileID: 4010319779811903008, guid: f5769328822dce7479847b94a900ba90, type: 3}
-  myRigidbody: {fileID: 7279936317439090801}
-  paddleBonceSound: {fileID: 7227347964957484457, guid: e1ba2bf9712bb3641a28c5439df5edd2, type: 3}
-  wallBonceSound: {fileID: 6478204675578012677, guid: fcadb3fda929ec04fa4530a0b7444681, type: 3}
