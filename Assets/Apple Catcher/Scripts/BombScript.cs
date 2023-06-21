@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class BombScript : MonoBehaviour
 {
-    public static bool bombIsDestroyed = true;
-    public InternHitboxScript ref_internHitboxScript;
+    public static bool bombIsDestroyed = true; // Public static boolean variable to hold whether the bomb has been destroyed
+    public InternHitboxScript ref_internHitboxScript; // Public reference to an InternHitboxScript object
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,12 +17,11 @@ public class BombScript : MonoBehaviour
 
     void Update()
     {
-        if (transform.position.y < -5.0f)
+        if (transform.position.y < -5.5f) // Check if the bomb has fallen below a certain position
         {
-            Destroy(gameObject);
-            bombIsDestroyed = true;
+            Destroy(gameObject); // Destroy the bomb object
+            bombIsDestroyed = true; // Set the bombIsDestroyed variable to true
         }
     }
 
 }
-
