@@ -2,7 +2,7 @@
 
 This unity project is a multigame containing three different games all accessible from a common menu. We have access to AppleCatcher, FulapyBird and BrickBreaker.
 
-Apple Catcher :
+Apple Catcher :\n
     Control :
         Left Arrow : The boy moves to the left
         Right Arrow : The boy moves to the right
