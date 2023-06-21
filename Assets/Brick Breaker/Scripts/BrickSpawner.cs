@@ -48,7 +48,6 @@ public class BrickSpawner : MonoBehaviour
         if (numBricks == 0)
         {
             // Set the flag to create new bricks and generate them
-            createBricks = true;
             GenerateBricks();
         }
     }
@@ -85,8 +84,6 @@ public class BrickSpawner : MonoBehaviour
             }
             culumnNumber = 0;
         }
-        // Reset the flag to create new bricks
-        createBricks = false;
     }
 
     // Initializes the colors for the bricks

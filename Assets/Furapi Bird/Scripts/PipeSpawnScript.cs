@@ -2,34 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerScript : MonoBehaviour
+public class PipeSpawnScript : MonoBehaviour
 {
-    public float jumpForce = 10; // Public float variable to hold the force of the player's jump
-    public float moveSpeed = 10; // Public float variable to hold the speed at which the player moves
-    public float deathZone = -10; // Public float variable to hold the position at which the player dies
-    private Rigidbody2D rb; // Private reference to the player's Rigidbody2D component
+    public GameObject pipe; // Public reference to a GameObject for the pipe
+    public float spawnRate = 2; // Public float variable to hold the spawn rate of the pipes
+    private float timer = 0; // Private float variable to hold the timer for spawning pipes
+    public float heightOffset = 10; // Public float variable to hold the height offset for spawning pipes
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>(); // Get the player's Rigidbody2D component and assign it to the rb variable
+        spawnPipe(); // Call the spawnPipe method to spawn the first pipe
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.y < deathZone) // Check if the player has fallen below the deathZone position
-        {
-            Debug.Log("Player Died."); // Log a message to the console
-            Destroy(gameObject); // Destroy the player object
+        if (timer < spawnRate) { // Check if the timer is less than the spawn rate
+            timer = timer + Time.deltaTime; // Increment the timer by the time since the last frame
+        } else {
+            spawnPipe(); // Call the spawnPipe method to spawn a new pipe
+            timer = 0; // Reset the timer
         }
+    }
 
-        if (Input.GetKeyDown(KeyCode.Space)) // Check if the spacebar has been pressed
-        {
-            rb.velocity = Vector2.up * jumpForce; // Add an upward force to the player's Rigidbody2D component
-        }
-
-        float horizontalInput = Input.GetAxis("Horizontal"); // Get the horizontal input from the user
-        transform.position = transform.position + (Vector3.right) * horizontalInput * moveSpeed * Time.deltaTime; // Move the player to the left or right based on the horizontal input and moveSpeed variable
+    // Spawns a new pipe
+    void spawnPipe()
+    {
+        float lowestPoint = transform.position.y - heightOffset; // Calculate the lowest point for spawning the pipe
+        float highestPoint = transform.position.y + heightOffset; // Calculate the highest point for spawning the pipe
+        Instantiate(pipe, new Vector3(transform.position.x, Random.Range(lowestPoint, highestPoint), 0), transform.rotation); // Instantiate the pipe at a random height between the lowest and highest points
     }
 }

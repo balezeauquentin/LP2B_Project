@@ -53,6 +53,10 @@ public class BallScript : MonoBehaviour
 
     void FixedUpdate()
     {
+        if(Mathf.Abs(myRigidbody.velocity.y) < 1){
+
+            myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, myRigidbody.velocity.y * 1.1f);
+        }
         // Limit the velocity of the ball
         if (myRigidbody.velocity.magnitude > maxVelocity)
         {
@@ -74,7 +78,7 @@ public class BallScript : MonoBehaviour
     void Update()
     {
         // Check if the ball has fallen below the screen or if all bricks have been destroyed
-        if (transform.position.y < -7f || BrickSpawner.createBricks == true)
+        if (transform.position.y < -7f)
         {
             // Lose a life and reset the ball
             ref_livesScript.LoseLife();
@@ -83,6 +87,13 @@ public class BallScript : MonoBehaviour
             isStopped = true;
             stopTime = Time.time;
         }
+        else if (BrickSpawner.numBricks == 0)
+        {
+            transform.position = new Vector2(0f, -5.5f);
+            myRigidbody.velocity = Vector2.zero;
+            isStopped = true;
+            stopTime = Time.time;
+        }   
     }
 
     // Called when the ball collides with another object
