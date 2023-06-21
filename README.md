@@ -5,15 +5,12 @@ This unity project is a multigame containing three different games all accessibl
 Apple Catcher :
 
     Control :
-    
         Left Arrow : The boy moves to the left
-        
         Right Arrow : The boy moves to the right
-
+        
     You have only 3 lives, when you take a bomb, you lost 1 life, at 0 life it's game over.
-
+    
     Goal :
-
         The goal of the game is to catch the most amount of apple.
     
 
